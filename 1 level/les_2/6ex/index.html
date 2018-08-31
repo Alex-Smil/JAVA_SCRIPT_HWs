@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		
+		//Если не попытаться сразу, явно проинициализировать переменную operation, посредством
+		//функции prompt(), то мы не избежно попадем в цикл на проверку верности введенного названия операции.
+
+		// var operation = prompt("Введите название операции которую вы хотите произвести: " + 
+		// 					   "\nsum\ndif\nmult\ndiv");
+
+		// while(!isOperation(operation)) {
+		// 	operation = prompt("Введите название операции которую вы хотите произвести: " + 
+		// 					   "\nsum\ndif\nmult\ndiv");
+		// }
+
+
+		//Альтернативная реализация верхнего модуля, на мой взгляд так более изящно.
+		// для корректой работы не забудь закомментировать один из них:
+
+		var a, b, operation;
+
+		do {
+			operation = prompt("Введите название операции которую вы хотите произвести: " + 
+							   "\nsum\ndif\nmult\ndiv");
+		} while (!isOperation(operation))
+
+		
+		do{
+			a = +prompt("Введите 1й операнд");
+			if (!isFinite(a)) {
+				alert("Вы вввели не корректный 1й операнд, попробуйте снова!");
+			}
+		} while (!isFinite(a)); // Возможно стоит сократить кол-во вызовов функции isFinite(a) для экономии RAM ?  
+
+		do{
+			b = +prompt("Введите 2й операнд");
+			if (b == 0) {
+					alert("На ноль делить нельзя! Введите еще раз 2й операнд!");
+					b = NaN; //Костыль ) Иначе calc его посчитает, так 0 это число.
+			} else if (!isFinite(b)) {
+				alert("Вы вввели не корректный 2й операнд, попробуйте снова!");
+			}
+		} while (!isFinite(b))
+
+
+		mySimpleCalc(a, b, operation);
+
+
+		// IF Переделать на SWITCH !!!!!!!!!!!!!!
+		// function mySimpleCalc (a, b, operation) {
+		// 	if (operation == "sum") {
+		// 		alert("sum( " + a + ", " + b + " ) = " + sum(a, b));
+		// 	} else if (operation == "dif") {
+		// 		alert("difference( " + a +", " + b + " ) = " + dif(a, b));
+		// 	} else if (operation == "mult") {
+		// 		alert("multiplication( " + a +", " + b + " ) = " + mult(a, b));
+		// 	} else if (operation == "div") {
+		// 		alert("division( " + a +  ", " + b + " ) = " + div(a, b));
+		// 	}
+		// }
+
+		function mySimpleCalc (a, b, operation) {
+			switch (operation) {
+				case "sum":
+					alert("sum( " + a + ", " + b + " ) = " + sum(a, b));
+					break;
+				case "dif":
+					alert("difference( " + a +", " + b + " ) = " + dif(a, b));
+					break;
+				case "mult":
+					alert("multiplication( " + a +", " + b + " ) = " + mult(a, b));
+					break;
+				case "div":
+					alert("division( " + a +  ", " + b + " ) = " + div(a, b));
+					break;
+			}
+		}
+
+		function sum(a, b) {
+			return (a + b);
+		}
+
+		function dif(a, b) {
+			return (a - b);
+		}
+
+		function mult(a, b) {
+			return (a * b);
+		}
+
+		function div(a, b) {
+			return (a / b);
+		}
+
+		function isOperation(oper) {
+			if (oper == "sum" || oper == "dif" || oper == "mult" || oper == "div") {
+				return true;
+			} else {
+				alert("Вы ввели не верную операцию!");
+				return false;
+			}
+		}
+
+	</script>
+</body>
+</html>

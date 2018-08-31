@@ -2,11 +2,20 @@
 // Программа - игра Морской бой в одну строчку.
 // Длина строки 8 ячеек, макс длина корабля 3 ячейки
 
-var location1 = 3, location2 = 4, location3 = 5; // Координаты корабля
-var guess; // Текущий номер попытки
+
+var location1 , location2, location3; // Координаты корабля
 var guesses = 0; // Общее кол-во попыток
 var hits = 0; // Кол-во поподаний
 var isSunk = false; // Если корабль потоплен, то тогда true
+
+//Блок инициализации случайных координат
+//В дальнейшем его тоже надо вынести в отдельный метод, но это не точно)
+location1 = Math.floor(Math.random() * 5);
+location2 = location1 + 1;
+location3 = location2 + 1;
+
+// TEST MODE для читеров
+alert("location1 = " + location1 + "\nlocation2 = " + location2 + "\nlocation3 = " + location3);
 
 while(!isSunk) {
 	var coordinats = prompt("Введите коордиинаты корабля начиная с 0 до 7");
@@ -14,12 +23,12 @@ while(!isSunk) {
 	if (coordinats == "" || coordinats == null) {
 		alert("Вы ничего не ввели!");
 		guesses++;
-	} else if (coordinats >= 0 || coordinats <= 7) {
-		coordinats = parseInt(coordinats);
+	} else if(isFinite(coordinats)) {
 		if (coordinats < 0 || coordinats > 7) {
-			alert("Вы ввели несуществующие координаты!");
+			alert("Вы вышли за пределы поля!");
 			guesses++;
 		} else {
+			// Этот блок else потом надо вынести в отдельный метод
 			if (coordinats == location1 || coordinats == location2 || coordinats == location3) {
 				guesses++;
 				hits++;
@@ -35,10 +44,14 @@ while(!isSunk) {
 			}
 		}
 	} else {
-		alert("Вы ввели НЕ число!");
+		alert("Вы ввели не верные данные!");
 		guesses++;
 	}
 }
 
 alert("Вы потопили корабль за " + guesses + " попыток");
+
+//Добавил 
+// Блок инициализации случайных координат
+// немного поменял блоки проверки на число
 
