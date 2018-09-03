@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		var lengthOfNumRow = 100;
+		var beginOfScript, endOfScript;
+		
+		beginOfScript = Date.now();
+		for (var i = 0; i <= lengthOfNumRow; i++) {
+			if (isPrimeNum(i)) {
+				console.log(i);
+				document.write(i + "<br>");
+			}
+		}
+		endOfScript = Date.now();
+		console.log("Lead time of script: " + (endOfScript - beginOfScript) + " ms");
+		document.write("Lead time of script: " + (endOfScript - beginOfScript) + " ms <br>");
+
+
+		//Alternative way, but with out 2
+		beginOfScript = Date.now();
+		for (var i = 1; i <= lengthOfNumRow; i += 2) {
+			if (isPrimeNum(i)) {
+				console.log(i);
+				document.write(i + "<br>");
+			}
+		}
+		endOfScript = Date.now();
+		console.log("Lead time of script: " + (endOfScript - beginOfScript) + " ms");
+		document.write("Lead time of script: " + (endOfScript - beginOfScript) + " ms <br>");
+
+
+		function isPrimeNum(num) {
+			if (num == 2) {
+				return true;
+			}
+			if ((num % 2 == 0) || num < 2) {
+				return false;
+			} 
+			mySqrt = Math.round(Math.sqrt(num));
+			for (var i = 2; i <= mySqrt; i++) {
+				if (num % i == 0) {
+					// num is even, prime can`t be even
+					return false; 
+				}
+			}
+			return true;
+		}
+
+	</script>
+</body>
+</html>
