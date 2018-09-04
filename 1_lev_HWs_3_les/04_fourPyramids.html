@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+
+	var height = getNumber();
+
+	rightUpPyramid(height);
+	rightDownPyramid(height);
+	leftUpPyramid(height);
+	leftDownPyramid(height);
+
+	function getNumber() {
+		do{
+			var height = +prompt("Введите высоту пирамиды");
+			if (!isFinite(height)) {
+				alert("Вводить можно только цифры!");
+			} else if (height < 0) {
+				alert("Число меньше 0, поробуйте снова!");
+				height = NaN;
+			} else if (height > 300) {
+				alert("Куда уже выше?, может не надо =) ");
+			} else {
+				//Math.round(height) - на всякий пожарный.
+				return Math.round(height);
+			}
+		} while(!isFinite(height));
+	}
+	
+	function rightUpPyramid(h) {
+		for (var i = 0; i < height; i++) {
+			for (var j = 0; j < height; j++) {
+				if (j < height - 1 - i) {
+					document.write("&nbsp;&nbsp;");
+				} else {
+					document.write("#");
+				}
+			}
+			document.write("<br>");
+		}
+		document.write("<br>");
+	}
+	
+	function rightDownPyramid(h) {
+		for (var i = 0; i < height; i++) {
+			for (var j = 0; j < height; j++) {
+				if (j < i) {
+					document.write("&nbsp;&nbsp;");
+				} else {
+					document.write("#");
+				}
+			}
+			document.write("<br>");
+		}
+		document.write("<br>");
+	}
+
+	function leftUpPyramid(h) {
+		for (var i = 0; i < h; i++) {
+			for (var j = 0; j <= i; j++) {
+				document.write("#");
+			}
+			document.write("<br>");
+		}
+		document.write("<br>");
+	}
+
+	function leftDownPyramid(h) {
+		for (var i = 0; i < h; i++) {
+			for (var j = (h - i); j > 0; j--) {
+				document.write("#");
+			}
+			document.write("<br>");
+		}
+		document.write("<br>");
+	}
+	</script>
+</body>
+</html>
