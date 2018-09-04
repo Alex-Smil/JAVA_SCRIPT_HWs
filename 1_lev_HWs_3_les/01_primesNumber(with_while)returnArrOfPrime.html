@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+
+    var myArr = getInitialArray(+prompt("Enter the length of a series of numbers"));
+    myPrint(getArrayOfPrime(myArr));
+    
+
+    function getArrayOfPrime(arr) {
+      var i = 0, len = arr.length, mySqrt, arrOfPrime = [];
+      while (i < len) {
+      	if (arr[i] < 2) {
+      		i++;
+      		continue;
+      	}
+      	var isPrime = true;
+        mySqrt = Math.round(Math.sqrt(arr[i]));
+        var j = 2;
+        while (j <= mySqrt) {
+          if (arr[i] % j == 0) {
+            isPrime = false;
+            j++;
+          } else {
+            j++;
+          }
+        }
+        if (isPrime) {
+          arrOfPrime.push(arr[i]);
+        }
+        i++;
+      }
+      return arrOfPrime;
+    }
+
+    function getInitialArray(lengthOfArr) {
+      var initialArray = [];
+      for (var i = 0; i < lengthOfArr; i++) {
+        initialArray[i] = i + 1;
+      }
+      return initialArray;
+    }
+
+    function myPrint(arr) {
+      var arrLen = arr.length;
+      document.write("Array of prime : ");
+      for (var i = 0; i < arrLen; i++) {
+        if (i % 10 == 0) {
+          document.write("<br>");
+        }
+        document.write(arr[i] + ", ");
+      }
+    }
+
+
+	</script>
+</body>
+</html>
