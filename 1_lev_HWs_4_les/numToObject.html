@@ -21,6 +21,16 @@
 				alert("Число должно быть 3х разрядное и не содержать никаких символов, кроме цифр. Попробуйте снова!");
 			}
 		} while(!isRightNumber);
+
+		addFields_1(num);
+		addFields_2(num);
+		addFields_3(myObj_3, num);
+		// myObj_4.addFields_4(num);
+		console.log(myObj);
+		console.log(myObj_2);
+		console.log(myObj_3);
+		// console.log(myObj_4);
+
 		
 		// option 1
 		// Строчное представление num
@@ -49,26 +59,13 @@
 			obj.field_3 = Math.round(num % 1000 / 100);
 		}
 
-
+		// option 4
 		// Данный способ, с использованием оператора this, не работает.
 		// function addFields_4(num) {
 		// 	this.field_1 = num % 10;
 		// 	this.field_2 = Math.round(num % 100 / 10);
 		// 	this.field_3 = Math.round(num % 1000 / 100);
 		// }
-
-		addFields_1(num);
-		addFields_2(num);
-		addFields_3(myObj_3, num);
-		// myObj_4.addFields_4(num);
-		console.log(myObj);
-		console.log(myObj_2);
-		console.log(myObj_3);
-		// console.log(myObj_4);
-
-
-
-	
 
 	</script>
 </body>
