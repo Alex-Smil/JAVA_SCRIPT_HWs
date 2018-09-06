@@ -31,6 +31,8 @@
 		console.log(myObj_3);
 		// console.log(myObj_4);
 
+		console.log(addFieldsAndRetObj(num));
+
 		
 		// option 1
 		// Строчное представление num
@@ -44,9 +46,9 @@
 		// option 2
 		// Числовое представление num
 		function addFields_2(num) {
-			myObj_2.field_1 = num % 10;
+			myObj_2.field_1 = Math.round(num % 1000 / 100);
 			myObj_2.field_2 = Math.round(num % 100 / 10);
-			myObj_2.field_3 = Math.round(num % 1000 / 100);
+			myObj_2.field_3 = num % 10;
 		}
 
 		// option 3
@@ -54,18 +56,29 @@
 		// Данная функция но мой взгляд болле универсальная, чем 2 которые объявленны выше, 
 		// так как данная функция предназначена по сути для любого объекта, а не только для объекта myObj или myObj_2
 		function addFields_3(obj, num) {
-			obj.field_1 = num % 10;
+			obj.field_1 = Math.round(num % 1000 / 100);
 			obj.field_2 = Math.round(num % 100 / 10);
-			obj.field_3 = Math.round(num % 1000 / 100);
+			obj.field_3 = num % 10; 
 		}
 
 		// option 4
 		// Данный способ, с использованием оператора this, не работает.
 		// function addFields_4(num) {
-		// 	this.field_1 = num % 10;
+		// 	this.field_1 = Math.round(num % 1000 / 100);
 		// 	this.field_2 = Math.round(num % 100 / 10);
-		// 	this.field_3 = Math.round(num % 1000 / 100);
+		// 	this.field_3 = num % 10;
 		// }
+
+		//option 5
+		//с возвратом объекта, как было сказано во время вебинара
+		function addFieldsAndRetObj(num){
+			var obj = {};
+			obj.field_1 = Math.round(num % 1000 / 100);
+			obj.field_2 = Math.round(num % 100 / 10);
+			obj.field_3 = num % 10;
+
+			return obj;
+		}
 
 	</script>
 </body>
