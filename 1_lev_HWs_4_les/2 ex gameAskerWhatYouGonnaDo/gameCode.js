@@ -55,7 +55,7 @@ switch (event) {
                     alert(works.c00 + works.c1 + works.c2);
                     break;
                     
-                    case -1: // Второе действие
+                    case -1:
                     break;
                     
                     default:
@@ -96,7 +96,7 @@ switch (event) {
                     alert(works.c00 + works.c1 + works.c2);
                     break;
                     
-                    case -1: // Второе действие
+                    case -1:
                     break;
                     
                     default:
@@ -155,7 +155,7 @@ switch (event) {
                     alert(works.c00 + works.c1 + works.c2);
                     break;
                     
-                    case -1: // Второе действие
+                    case -1:
                     break;
                     
                     default:
@@ -196,7 +196,7 @@ switch (event) {
                     alert(works.c00 + works.c1 + works.c2);
                     break;
                     
-                    case -1: // Второе действие
+                    case -1:
                     break;
                     
                     default:
