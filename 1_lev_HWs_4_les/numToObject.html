@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		
+		var myObj = {};
+		var myObj_2 = {};
+		var myObj_3 = {};
+		var myObj_4 = {};
+		var isRightNumber = false;
+		// var num = "343";
+		do {
+			var num = prompt("Введите 3х разрядное число");
+			// var arrOfNum = num.split("");
+			if (isFinite(num) && ((num.split("")).length) == 3) {
+				isRightNumber = true;
+			} else {
+				alert("Число должно быть 3х разрядное и не содержать никаких символов, кроме цифр. Попробуйте снова!");
+			}
+		} while(!isRightNumber);
+		
+		// option 1
+		// Строчное представление num
+		function addFields_1(num) {
+			var res = num.split("");
+			myObj.field_1 = res[0];
+			myObj.field_2 = res[1];
+			myObj.field_3 = res[2];
+		}
+
+		// option 2
+		// Числовое представление num
+		function addFields_2(num) {
+			myObj_2.field_1 = num % 10;
+			myObj_2.field_2 = Math.round(num % 100 / 10);
+			myObj_2.field_3 = Math.round(num % 1000 / 100);
+		}
+
+		// option 3
+		// Числовое представление num + передача объекта в качестве аргумента
+		// Данная функция но мой взгляд болле универсальная, чем 2 которые объявленны выше.
+		function addFields_3(obj, num) {
+			obj.field_1 = num % 10;
+			obj.field_2 = Math.round(num % 100 / 10);
+			obj.field_3 = Math.round(num % 1000 / 100);
+		}
+
+
+		// Данный способ, с использованием оператора this, не работает.
+		// function addFields_4(num) {
+		// 	this.field_1 = num % 10;
+		// 	this.field_2 = Math.round(num % 100 / 10);
+		// 	this.field_3 = Math.round(num % 1000 / 100);
+		// }
+
+		addFields_1(num);
+		addFields_2(num);
+		addFields_3(myObj_3, num);
+		// myObj_4.addFields_4(num);
+		console.log(myObj);
+		console.log(myObj_2);
+		console.log(myObj_3);
+		// console.log(myObj_4);
+
+
+
+	
+
+	</script>
+</body>
+</html>
