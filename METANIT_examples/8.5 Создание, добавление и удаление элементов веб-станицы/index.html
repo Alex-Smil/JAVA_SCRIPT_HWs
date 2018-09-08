@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	 <div class="article">
+        <h3>Заголовок статьи</h3>
+        <h2>Заголовок H2 статьи</h2>
+        <p>Первый абзац</p>
+        <p>Второй абзац</p>
+    </div>
+
+    <h1>Далее следует клон верхнего блока div</h1>
+
+	<script>
+		// Получаем элемент для дальнейшей вставки в него
+		var blockArticle = document.querySelector("div.article");
+		// так тоже можно, но так надо работать с массивом
+		// var blockArticle = document.getElementsByClassName("article")[0];
+		
+		// Создаем элемент, который хотим поместить внутрь div.article
+		var newTag = document.createElement("h2");
+		
+		// Создаем текстовый узел
+		// var newTextNode = document.createTextNode("Hello everyone!!!");
+		// Однако нам необязательно для определения текста внутри элемента
+		// создавать дополнительный текстовый узел, так как мы можем 
+		// воспользоваться свойством textContent и напрямую ему присвоить текст:
+		newTag.textContent = "Hello everyone!!!";
+		
+		// Помещаем текстовый узел во вновь созданный элемент, как дочерний элемент
+		// newTag.appendChild(newTextNode);
+		
+		// Помещаем элемент в blockArticle
+		blockArticle.appendChild(newTag); 
+
+
+		// ============ Теперь рассмотрим, как аналогичный элемент добавить
+		// в начало коллекции дочерних узлов блока div: ===================
+
+		// создаем новый элемент для вставки 
+		var newTagFirst = document.createElement("h2");
+
+		// создаем текстовый узел для newTagFirst
+		var newTextNodeFirst = document.createTextNode("МОй превый Узел!");
+
+		// добавляем текстовый узел в newTagFirst
+		newTagFirst.appendChild(newTextNodeFirst);
+
+		// ***********  по данному блоку есть ВОПРОСЫ ! ***************
+		// получаем первый элемент, перед которым нужно сделать вставку
+		var firstElement = blockArticle.firstChild;
+		// так сказано в учебнике, но зачем здесь нужен nextSibling ?
+		// Разве он не должен вернуть следующий элемент,
+		// который находится на одном уровне с текущим, 
+		// я имею ввиду <p>Первый абзац</p> ?
+		// var firstElement = blockArticle.firstChild.nextSibling;
+		// Материал взят здесь:
+		// https://metanit.com/web/javascript/8.5.php
+		// *************************************************************
+
+		blockArticle.insertBefore(newTagFirst, firstElement);
+		// ==============================================================
+
+		// ===============  Копирование элемента  =======================
+		// используем cloneNode(true) - параметры:
+		// true - элемент будет копироваться со всеми дочерними узлами
+		// false - то копируется без дочерних узлов
+		var blockArticleClone = blockArticle.cloneNode(true);
+
+		// Вставку производим в тег <body>
+		document.body.appendChild(blockArticleClone);
+		// ==============================================================
+
+
+		// ==================  Удаление элемента  =======================
+		// используем removeChild() объекта Node
+		// Этот метод удаляет один из дочерних узлов:
+		var removableElement =  document.querySelectorAll("div.article p")[0];
+		blockArticle.removeChild(removableElement);
+
+		// ****************  ВОПРОС  ********************************
+		// Почему из клона нельзя удалить элемент, а из
+		// основного блока можно? 
+		// Из клона не удаляет, почему?
+		// blockArticleClone.removeChild(removableElement);
+		// **********************************************************
+
+		// Вариант 2, удаление.
+		var removableElement_h3 = document.querySelector("h3");
+		blockArticle.removeChild(removableElement_h3);
+		// ===============================================================
+
+		// ==================  Замена элемента  ==========================
+		// var oldNode = document.querySelectorAll("div.article h2")[0];
+		//варинант 2 верхней строки кода
+		var oldNode = document.querySelector("div.article h2");
+		2
+		var newNode = document.createElement("h1");
+		var newNodeText = document.createTextNode("Я ЗАМЕНИЛ собой прошлый МОй превый Узел!!!!");
+		newNode.appendChild(newNodeText);
+		blockArticle.replaceChild(newNode, oldNode);
+
+
+
+	</script>
+</body>
+</html>

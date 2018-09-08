@@ -1,0 +1,68 @@
+
+<!-- Для поиска элементов на странице применяются следующие методы:
+
+getElementById(value): выбирает элемент, у которого атрибут id равен value
+
+getElementsByTagName(value): выбирает все элементы, у которых тег равен value
+
+getElementsByClassName(value): выбирает все элементы, которые имеют класс value
+
+querySelector(value): выбирает первый элемент, который соответствует css-селектору value
+
+querySelectorAll(value): выбирает все элементы, которые соответствуют css-селектору value -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div>
+        <h3 id="header">Block Header</h3>
+        <p>Text</p>
+    </div>
+    <div>===========================</div>
+    <div>
+        <h3>Заголовок</h3>
+        <p>Первый абзац</p>
+        <p>Второй абзац</p>
+    </div>
+    <div>===========================</div>
+    <div class="article">
+        <h3>Заголовок статьи</h3>
+        <p class="text">Первый абзац</p>
+        <p class="text">Второй абзац</p>
+    </div>
+
+    <script>
+    	// Поиск по id элемента, используем:
+    	// document.getElementById("nameOfId")
+    	// и
+    	// element.innerText
+    	var headerEl = document.getElementById("header");
+    	document.write("Текст заголовка: " + headerEl.innerText + "<br>");
+
+    	//======================================================================
+    	// Поиск по определенному тегу, используем:
+    	// getElementsByTagName("NameOfTag")
+    	// получаем массив элементов
+    	var pElements = document.getElementsByTagName("p");
+    	for (var i = 0; i < pElements.length; i++) {
+    		document.write("Параграф " + i + " содержит текст: " + pElements[i].innerText + "<br>");
+    	}
+
+    	//Если необходим получить отдельный элемент, то в конце надо добавить его индекс [n]
+    	var pElement_1 = document.getElementsByTagName("p")[1];
+    	document.write("<br>Только 2ой Параграф содержит текст: " + pElement_1.innerText + "<br>");
+
+    	//======================================================================
+    	// Получение элемента по классу, используем:
+    	// getElementsByClassName("className")
+    	// данный метод возвращает массив элементов
+    	var classElements = document.getElementsByClassName("text");
+    	for (var i = 0; i < classElements.length; i++) {
+    		document.write("1й элемент содержит: " + classElements[i].innerText + "<br>");
+    	}
+    </script>
+</body>
+</html>
