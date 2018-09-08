@@ -6,11 +6,11 @@
 </head>
 <body>
 	 <div class="article">
-        <h3>Заголовок статьи</h3>
-        <h2>Заголовок H2 статьи</h2>
-        <p>Первый абзац</p>
-        <p>Второй абзац</p>
-    </div>
+	 	<h3>Заголовок статьи</h3>
+	 	<h2>Заголовок H2 статьи</h2>
+	 	<p>Первый абзац</p>
+	 	<p>Второй абзац</p>
+	 </div>
 
     <h1>Далее следует клон верхнего блока div</h1>
 
@@ -49,9 +49,13 @@
 		// добавляем текстовый узел в newTagFirst
 		newTagFirst.appendChild(newTextNodeFirst);
 
+		
+
+
+
 		// ***********  по данному блоку есть ВОПРОСЫ ! ***************
 		// получаем первый элемент, перед которым нужно сделать вставку
-		var firstElement = blockArticle.firstChild;
+		var firstElement = blockArticle.firstChild.nextSibling;
 		// так сказано в учебнике, но зачем здесь нужен nextSibling ?
 		// Разве он не должен вернуть следующий элемент,
 		// который находится на одном уровне с текущим, 
@@ -59,10 +63,24 @@
 		// var firstElement = blockArticle.firstChild.nextSibling;
 		// Материал взят здесь:
 		// https://metanit.com/web/javascript/8.5.php
-		// *************************************************************
-
+								//|||||||||			
+		// ********************* ЕСТЬ ОТВЕТ ***************************
+		var arrOfChildNodes = blockArticle.childNodes;
+		for (var i = 0; i < arrOfChildNodes.length; i++) {
+			console.log("Имя элемента: " + arrOfChildNodes[i].nodeName);
+		}
+		// зачем здесь нужен nextSibling? - Потому что 1 элемент это -
+		// ' Имя элемента: #text ', т.е. пробел между строками (переход на новыу строку в редакторе)
+		// мое предположение будет верно только если весь текст кода прописать в 1 строку, я пробовал.
+		// см. в консоли браузера
 		blockArticle.insertBefore(newTagFirst, firstElement);
+		// мой код nextSibling выполнялся только потому, что интерпритатор браузера умный очень.
 		// ==============================================================
+		// **************************************************************
+
+		
+
+
 
 		// ===============  Копирование элемента  =======================
 		// используем cloneNode(true) - параметры:
@@ -81,12 +99,8 @@
 		var removableElement =  document.querySelectorAll("div.article p")[0];
 		blockArticle.removeChild(removableElement);
 
-		// ****************  ВОПРОС  ********************************
-		// Почему из клона нельзя удалить элемент, а из
-		// основного блока можно? 
 		// Из клона не удаляет, почему?
 		// blockArticleClone.removeChild(removableElement);
-		// **********************************************************
 
 		// Вариант 2, удаление.
 		var removableElement_h3 = document.querySelector("h3");
@@ -97,7 +111,7 @@
 		// var oldNode = document.querySelectorAll("div.article h2")[0];
 		//варинант 2 верхней строки кода
 		var oldNode = document.querySelector("div.article h2");
-		2
+		
 		var newNode = document.createElement("h1");
 		var newNodeText = document.createTextNode("Я ЗАМЕНИЛ собой прошлый МОй превый Узел!!!!");
 		newNode.appendChild(newNodeText);
