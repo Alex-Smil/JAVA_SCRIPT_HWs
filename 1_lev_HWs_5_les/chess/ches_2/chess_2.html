@@ -8,42 +8,113 @@
 <body>
 	<!-- дальше будет работать скрипт -->
 	<script>
+		// Данные для адресных полей
+		var tmpStr = " abcdefgh ";
+		var arrOfChar = tmpStr.split("");
+		// console.log(arrOfChar);
+
+		var tmpNum = "87654321";
+		var arrOfNum = tmpNum.split("");
+		// console.log(arrOfNum);
+
 		// Размер игрового поля
 		var size = 8;
+
 		// Выбираем body для работы с ним
 		var myBody = document.querySelector("body");
 
-		//Создаем наши элементы таблицы, для дальнейшей их вставки, и создания из них
-		//элементов доски:
+		// Создаем наши элементы таблицы, для дальнейшей их вставки, и создания из них
+		// элементов доски:
 		// Элемент обертка для таблицы
 		var wrapDiv = document.createElement("div");
+		wrapDiv.className = "wrapper";
 
 		//Далее идет сама доска в виде таблицы с ее элементами
 		var board = document.createElement("table");
 		board.className = "myTable";
+
+		//добаляем board во wrapper
+		wrapDiv.appendChild(board);
+		// wrapper вкладываем в myBody
+		myBody.appendChild(wrapDiv);
+
+		
+		// // Затем столбец
+		// var column = document.createElement("td");
+		// var columnText = document.createTextNode("ТЕСТ");
+		// column.appendChild(columnText);
+		var column, columnText, columnHeader, columnHeaderChar;
+		// таблица не треб итер, прост 1 раз пишем
+		// myBody.appendChild(board);
+
 		// Далее строка
 		var row = document.createElement("tr");
+		row.className = "str";
+		board.appendChild(row);
 
-		// объявляем переменные, в цикле я думаю этого делать не стоит.
-		var row, column, columnText;
-
-		// таблица не треб итер, прост 1 раз пишем
-		myBody.appendChild(board);
-
+		//В этом цикле создаем верхнию строку доски с буквами
+		// Header Доски
+		for (var i = 0; i < arrOfChar.length; i++) {
+		 	columnHeader = document.createElement("td");
+		 	columnHeader.className = "cell headerOfBoard";
+		 	columnHeaderChar = document.createTextNode(arrOfChar[i]);
+		 	columnHeader.appendChild(columnHeaderChar);
+		 	row.appendChild(columnHeader);
+		 } 
 
 		//Пробуем собрать поле из элементов таблицы
 		for (var i = 0; i < size; i++) {
-			//Создаем строки
+			//Сначала создаем строки
 			row = document.createElement("tr");
 			board.appendChild(row);
+
+
 			//Заполняем строку ячейками, создаем columns
-			for (var j = 0; j < size; j++) {
+			//size + 2, нужен для левого и правого столбца адресных чисел
+			for (var j = 0; j < size + 2; j++) {
+				
+				// row.innerHTML = "<td>Q</td>";
+				// row.appendChild(column.cloneNode(true));
 				column = document.createElement("td");
-				columnText = document.createTextNode("ТЕСТ" + "-" + j);
-				column.appendChild(columnText);
-				row.appendChild(column);
-				console.log(columnText);			}
+				// column.className = "cell";
+				// columnText = document.createTextNode("ТЕСТ" + "-" + j);
+				// column.appendChild(columnText);
+				// row.appendChild(column);
+				// console.log(columnText);	
+
+
+				if (j == 0) {
+					column.className = "addressFieldLeft";
+					columnText = document.createTextNode(arrOfNum[i]);
+					column.appendChild(columnText);
+					row.appendChild(column);
+				} else if (j == 9) {
+					column.className = "addressFieldRight";
+					columnText = document.createTextNode(arrOfNum[i]);
+					column.appendChild(columnText);
+					row.appendChild(column);
+				} else if ((i % 2 != 0 && j % 2 != 0) || (i % 2 == 0 && j % 2 == 0)) {
+					column.className = "blackField";
+					row.appendChild(column);
+				} else {
+					column.className = "cell whiteCell";
+					row.appendChild(column);
+				}		
+			}
 		}
+
+		// Footer доски
+		row = document.createElement("tr");
+		board.appendChild(row);
+		for (var i = 0; i < arrOfChar.length; i++) {
+		 	columnHeader = document.createElement("td");
+		 	columnHeader.className = "cell";
+		 	columnHeaderChar = document.createTextNode(arrOfChar[i]);
+		 	columnHeader.appendChild(columnHeaderChar);
+		 	row.appendChild(columnHeader);
+
+
+		 } 
 	</script>
 </body>
 </html>
