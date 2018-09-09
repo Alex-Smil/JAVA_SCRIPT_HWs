@@ -24,7 +24,7 @@
 		// Далее строка
 		var row = document.createElement("tr");
 		// // Затем столбец
-		var column = document.createElement("tr");
+		var column = document.createElement("td");
 		var columnText = document.createTextNode("ТЕСТ");
 		column.appendChild(columnText);
 
@@ -37,13 +37,13 @@
 		//Пробуем собрать поле из элементов таблицы
 		for (var i = 0; i < size; i++) {
 			//Сначала создаем строки
-			board.appendChild(row);
+			board.appendChild(row.cloneNode(true));
 			//Заполняем строку ячейками, создаем columns
 			//size + 2, нужен для левого и правого столбца адресных чисел
 			for (var j = 0; j < size + 2; j++) {
 				
 				// row.innerHTML = "<td>Q</td>";
-				row.appendChild(column);
+				row.appendChild(column.cloneNode(true));
 			}
 		}
 	</script>
