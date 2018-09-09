@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<!-- дальше будет работать скрипт -->
+	<script>
+		// Размер игрового поля
+		var size = 8;
+		// Выбираем body для работы с ним
+		var myBody = document.querySelector("body");
+
+		//Создаем наши элементы таблицы, для дальнейшей их вставки, и создания из них
+		//элементов доски:
+		// Элемент обертка для таблицы
+		var wrapDiv = document.createElement("div");
+
+		//Далее идет сама доска в виде таблицы с ее элементами
+		var board = document.createElement("table");
+		board.className = "myTable";
+		// Далее строка
+		var row = document.createElement("tr");
+		// // Затем столбец
+		var column = document.createElement("tr");
+		var columnText = document.createTextNode("ТЕСТ");
+		column.appendChild(columnText);
+
+
+
+
+		// таблица не треб итер, прост 1 раз пишем
+		myBody.appendChild(board);
+
+		//Пробуем собрать поле из элементов таблицы
+		for (var i = 0; i < size; i++) {
+			//Сначала создаем строки
+			board.appendChild(row);
+			//Заполняем строку ячейками, создаем columns
+			//size + 2, нужен для левого и правого столбца адресных чисел
+			for (var j = 0; j < size + 2; j++) {
+				
+				// row.innerHTML = "<td>Q</td>";
+				row.appendChild(column);
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<script>
+		
+		
+		// var i = 1;
+		// while(i <= 10) {
+		// 	table += "<td>" + i + "</td>";
+		// 	i++;
+		// }
+
+		// создаем строку символов для разметки поля
+		var tmpCharacterString = " abcdefgh ";
+		// модифицируем строку в массив для удобной итерации ячеек.
+		var charcterArray = tmpCharacterString.split("");
+		var tmpNumberString = "087654321";
+		numberArray = tmpNumberString.split("");
+		console.log(charcterArray);
+		console.log(numberArray);
+
+		// открываем таблицу и 1ю строку
+		var table = "<table border = '1' class = \"myTable\">"
+
+		var size = 8;
+
+		//превый цикл проставит верхние буквы
+		for (var i = 0; i < 1; i++) {
+			table += "<tr>";
+			for (var j = 0; j < charcterArray.length; j++) {
+				table += "<td>" + charcterArray[j] + "</td>"
+				// console.log("table += \"<td>" + numberArray[j] + "  =============== " );
+			}
+			table += "</tr>"
+			// console.log("table += \"</tr>\"  ===============" + numberArray[i]);
+		}
+
+
+		for (var i = 0; i < size; i++) {
+			table += "<tr>";
+			for (var j = 0; j < size+2; j++) {
+				table += "<td>" + j + "</td>";
+			}
+			table += "</tr>";
+		}
+
+		//3й цикл проставит нижние буквы
+		for (var i = 0; i < 1; i++) {
+			table += "<tr>";
+			for (var j = 0; j < charcterArray.length; j++) {
+				table += "<td>" + charcterArray[j] + "</td>"
+				// console.log("table += \"<td>" + numberArray[j] + "  =============== " );
+			}
+			table += "</tr>"
+			// console.log("table += \"</tr>\"  ===============" + numberArray[i]);
+		}
+
+		// закрываем 1ю строку
+		// table += "</tr><tr>";
+		// i = 1;
+		// while(i <= 10) {
+		// 	var x = i * i;
+		// 	table += "<td>" + x + "</td>";
+		// 	i++;
+		// }
+
+		table += "</table>";
+
+		document.write(table);
+		
+	</script>
+
+</body>
+</html>
