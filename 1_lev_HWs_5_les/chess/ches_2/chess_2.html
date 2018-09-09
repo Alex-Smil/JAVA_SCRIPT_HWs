@@ -23,28 +23,26 @@
 		board.className = "myTable";
 		// Далее строка
 		var row = document.createElement("tr");
-		// // Затем столбец
-		var column = document.createElement("td");
-		var columnText = document.createTextNode("ТЕСТ");
-		column.appendChild(columnText);
 
-
-
+		// объявляем переменные, в цикле я думаю этого делать не стоит.
+		var row, column, columnText;
 
 		// таблица не треб итер, прост 1 раз пишем
 		myBody.appendChild(board);
 
+
 		//Пробуем собрать поле из элементов таблицы
 		for (var i = 0; i < size; i++) {
-			//Сначала создаем строки
-			board.appendChild(row.cloneNode(true));
+			//Создаем строки
+			row = document.createElement("tr");
+			board.appendChild(row);
 			//Заполняем строку ячейками, создаем columns
-			//size + 2, нужен для левого и правого столбца адресных чисел
-			for (var j = 0; j < size + 2; j++) {
-				
-				// row.innerHTML = "<td>Q</td>";
-				row.appendChild(column.cloneNode(true));
-			}
+			for (var j = 0; j < size; j++) {
+				column = document.createElement("td");
+				columnText = document.createTextNode("ТЕСТ" + "-" + j);
+				column.appendChild(columnText);
+				row.appendChild(column);
+				console.log(columnText);			}
 		}
 	</script>
 </body>
