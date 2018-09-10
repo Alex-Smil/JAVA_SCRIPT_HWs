@@ -45,13 +45,13 @@
 		// расположены согласно своему стандартному порядку.
 		var arrOfWhiteFigures = ["&#9817;", "&#9814;", 
 								 "&#9816;", "&#9815;",
-								 "&#9813;", "&#9812;",
+								 "&#9812;", "&#9813;", 
 								 "&#9815;", "&#9816;",
 								 "&#9814;"];
 		// Черные
 		var arrOfBlackFigures = ['&#9823;', "&#9820;",
 								 "&#9822;", "&#9821;",
-								 "&#9819;", "&#9818;",
+								 "&#9818;", "&#9819;", 
 								 "&#9821;", "&#9822;",
 								 "&#9820;"];
 
@@ -127,18 +127,36 @@
 					column.appendChild(columnText);
 					row.appendChild(column);
 				} else if ((i % 2 != 0 && j % 2 != 0) || (i % 2 == 0 && j % 2 == 0)) {
-					column.className = "blackField";
+					column.className = "cell blackField";
 					row.appendChild(column);
-					column.innerHTML = "&#9815;"; // это строка просто тест
 				} else {
 					column.className = "cell whiteCell";
-					row.appendChild(column);
+s					row.appendChild(column);
+				}
 
-					// ????????????????????? ВОПРОС № 2 - НЕ РАБОТАЕТ ?????????????????????????
-					// column.innerHTML = arrOfWhiteFigures[0]; // Почему вот это не работает? надо передавать из массива эти HTML сущности.
-					column.innerHTML = "&#9819;"; // это строка просто тест
-					// ???????????????????????????????????????????????????????????
-				}		
+				// Данный блок расставляет фигуры в первоначальное расположение
+				// Ставим основные черные фигуры наверху
+				if (i == 0 && (j != 0 && j != 9)) {
+					column.innerHTML = arrOfBlackFigures[j];
+					row.appendChild(column);
+				}
+				// Ставим черный пешки наверху
+				if (i == 1 && (j != 0 && j != 9)) {
+					column.innerHTML = arrOfBlackFigures[0];
+					row.appendChild(column);
+				}
+
+				// Ставим белые фигуры
+				// Ставим белые пешки наверху
+				if (i == 6 && (j != 0 && j != 9)) {
+					column.innerHTML = arrOfWhiteFigures[0];
+					row.appendChild(column);
+				}
+				// Ставим основные белые фигуры наверху
+				if (i == 7 && (j != 0 && j != 9)) {
+					column.innerHTML = arrOfWhiteFigures[j];
+					row.appendChild(column);
+				}
 			}
 		}
 
@@ -147,7 +165,7 @@
 		board.appendChild(row);
 		for (var i = 0; i < arrOfChar.length; i++) {
 		 	column = document.createElement("td");
-		 	column.className = "cell";
+		 	column.className = "cell footerOfBoard";
 		 	columnOfChar = document.createTextNode(arrOfChar[i]);
 		 	column.appendChild(columnOfChar);
 		 	row.appendChild(column);

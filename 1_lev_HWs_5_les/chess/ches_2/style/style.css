@@ -1,33 +1,45 @@
 .wrapper {
 	/*margin: 50px auto;*/
 	/*margin-left: 500px; */
-	font-size: 55px;
+	font-size: 50px;
 	text-align: center;
 
 }
 .myTable {
 	margin: 50px auto;
 	background-image: url(../images/wood3.png);
+	/*transform: rotate(180deg);*/
 }
 .headerOfBoard {
 	transform: rotate(180deg);
 }
+
 .cell,
 .addressFieldLeft,
 .addressFieldRight {
 	border: 1px solid black;
 	width: 70px;
 	height: 70px;
-	
-	
 }
+
+.headerOfBoard,
+.footerOfBoard,
+.addressFieldLeft,
+.addressFieldRight {
+	font-size: 35px;
+}
+
 .addressFieldRight {
 	transform: rotate(180deg);
 }
+
 .blackField {
 	/*background: black;*/
-	background-image: url(../images/woodBlack.png);
+	/*background-image: url(../images/woodBlack.png);*/
+	background: url(../images/woodBlack_2.jpg) center center;
+	/*border: 1px solid black;*/
 }
+
 .whiteCell {
 	background-image: url(../images/wood3.png);
 }
