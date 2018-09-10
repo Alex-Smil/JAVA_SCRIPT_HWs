@@ -20,39 +20,40 @@
 		// Объекты хранят шахматные фигуры в своих полях, в unicode в формате html
 		// Белые
 		var whiteFigures = {pawn: "&#9817;", 
-							rook: "&#9814;",
-							horse: "&#9816;",
-							elephant: "&#9815;",
-							queen: "&#9813;",
-							king: "&#9812;",
-							elephant: "&#9815;",
-							horse: "&#9816;",
-							rook: "&#9814;"};
+								 rook: "&#9814;",
+								 horse: "&#9816;",
+								 elephant: "&#9815;",
+								 queen: "&#9813;",
+								 king: "&#9812;",
+								 elephant: "&#9815;",
+								 horse: "&#9816;",
+								 rook: "&#9814;"
+								 };
 		// Черные
 		var blackFigures = {pawn: "&#9823;", 
-							rook: "&#9820;",
-							horse: "&#9822;",
-							elephant: "&#9821;",
-							queen: "&#9819;",
-							king: "&#9818;",
-							elephant: "&#9821;",
-							horse: "&#9822;",
-							rook: "&#9820;"};
-
+								 rook: "&#9820;",
+								 horse: "&#9822;",
+								 elephant: "&#9821;",
+								 queen: "&#9819;",
+								 king: "&#9818;",
+								 elephant: "&#9821;",
+								 horse: "&#9822;",
+								 rook: "&#9820;"
+								 };
 		// Пока еще незнаю, но может быть удобнее будет хранить и использовать фигуры
 		// в массивах, порядок фигур такой же как и внутри объектов, да и вообще фигуры
 		// расположены согласно своему стандартному порядку.
 		var arrOfWhiteFigures = ["&#9817;", "&#9814;", 
-								"&#9816;", "&#9815;",
-								"&#9813;", "&#9812;",
-								"&#9815;", "&#9816;",
-								"&#9814;"];
+								 "&#9816;", "&#9815;",
+								 "&#9813;", "&#9812;",
+								 "&#9815;", "&#9816;",
+								 "&#9814;"];
 		// Черные
-		var arrOfBlackFigures = ["&#9823;", "&#9820;",
-								"&#9822;", "&#9821;",
-								"&#9819;", "&#9818;",
-								"&#9821;", "&#9822;",
-								"&#9820;"];
+		var arrOfBlackFigures = ['&#9823;', "&#9820;",
+								 "&#9822;", "&#9821;",
+								 "&#9819;", "&#9818;",
+								 "&#9821;", "&#9822;",
+								 "&#9820;"];
 
 
 		// Размер игрового поля
@@ -61,65 +62,59 @@
 		// Выбираем body для работы с ним
 		var myBody = document.querySelector("body");
 
-		// Создаем наши элементы таблицы, для дальнейшей их вставки, и создания из них
-		// элементов доски:
-		// Элемент обертка для таблицы
+		// блок контейнер для таблицы
 		var wrapDiv = document.createElement("div");
 		wrapDiv.className = "wrapper";
 
-		//Далее идет сама доска в виде таблицы с ее элементами
+		// Далее идет сама доска в виде таблицы с ее элементами
 		var board = document.createElement("table");
 		board.className = "myTable";
 
-		//добаляем board во wrapper
+		// добаляем board во wrapper
 		wrapDiv.appendChild(board);
 		// wrapper вкладываем в myBody
 		myBody.appendChild(wrapDiv);
 
-		
-		// // Затем столбец
-		// var column = document.createElement("td");
-		// var columnText = document.createTextNode("ТЕСТ");
-		// column.appendChild(columnText);
-		var column, columnText, columnHeader, columnHeaderChar;
-		// таблица не треб итер, прост 1 раз пишем
-		// myBody.appendChild(board);
+		// ???????????????????????? ВОПРОС ?????????????????????????????????????
+		// Думаю не стоит объявлять пременные вместе с оператором var 
+		// внутри циклов, так как это породить физические дубликаты в 
+		// оперативной памяти. Поэтому один раз резервиируем для них место в RAM
+		// а затем в циклах просто переопределям их. 
+		// Но я не уверен, что я правильно размышляю.
+		var column, columnText;
+		// ?????????????????????????????????????????????????????????????????????
 
-		// Далее строка
+		// Далее создаем строку
 		var row = document.createElement("tr");
-		row.className = "str";
 		board.appendChild(row);
 
-		//В этом цикле создаем верхнию строку доски с буквами
-		// Header Доски
+		// В этом цикле создаем верхнию строку доски с буквами
+		// Header Доски, этот же блок подойдет в качестве footer доски, 
+		// В footer надо только убрать класс headerOfBoard, см. ниже 
 		for (var i = 0; i < arrOfChar.length; i++) {
-		 	columnHeader = document.createElement("td");
-		 	columnHeader.className = "cell headerOfBoard";
-		 	columnHeaderChar = document.createTextNode(arrOfChar[i]);
-		 	columnHeader.appendChild(columnHeaderChar);
-		 	row.appendChild(columnHeader);
+		 	column = document.createElement("td");
+		 	column.className = "cell headerOfBoard";
+		 	columnOfChar = document.createTextNode(arrOfChar[i]);
+		 	column.appendChild(columnOfChar);
+		 	row.appendChild(column);
 		 } 
 
-		//Пробуем собрать поле из элементов таблицы
+		// В следующем цикл создает уже само игровое поле,
+		// + в нем же создаем левое и правое адресное поле (там где цифры)
 		for (var i = 0; i < size; i++) {
-			//Сначала создаем строки
+			//Сначала создаем строку
 			row = document.createElement("tr");
+			// Добавляем строку на доску
 			board.appendChild(row);
 
 
-			//Заполняем строку ячейками, создаем columns
-			//size + 2, нужен для левого и правого столбца адресных чисел
+			// Заполняем строку ячейками, создаем columns и по очерди помещаем column в строку,
+			// + при помощи условных блоков мы заполняем columns контентом и стилизуем их 
+			// в зависимости от их расположения на доске
+			// size + 2, нужен для левого и правого столбца адресных полей
 			for (var j = 0; j < size + 2; j++) {
-				
-				// row.innerHTML = "<td>Q</td>";
-				// row.appendChild(column.cloneNode(true));
+				// создаем экземпляр ячейки
 				column = document.createElement("td");
-				// column.className = "cell";
-				// columnText = document.createTextNode("ТЕСТ" + "-" + j);
-				// column.appendChild(columnText);
-				// row.appendChild(column);
-				// console.log(columnText);	
-
 
 				if (j == 0) {
 					column.className = "addressFieldLeft";
@@ -134,9 +129,15 @@
 				} else if ((i % 2 != 0 && j % 2 != 0) || (i % 2 == 0 && j % 2 == 0)) {
 					column.className = "blackField";
 					row.appendChild(column);
+					column.innerHTML = "&#9815;"; // это строка просто тест
 				} else {
 					column.className = "cell whiteCell";
 					row.appendChild(column);
+
+					// ????????????????????? ВОПРОС № 2 - НЕ РАБОТАЕТ ?????????????????????????
+					// column.innerHTML = arrOfWhiteFigures[0]; // Почему вот это не работает? надо передавать из массива эти HTML сущности.
+					column.innerHTML = "&#9819;"; // это строка просто тест
+					// ???????????????????????????????????????????????????????????
 				}		
 			}
 		}
@@ -145,14 +146,14 @@
 		row = document.createElement("tr");
 		board.appendChild(row);
 		for (var i = 0; i < arrOfChar.length; i++) {
-		 	columnHeader = document.createElement("td");
-		 	columnHeader.className = "cell";
-		 	columnHeaderChar = document.createTextNode(arrOfChar[i]);
-		 	columnHeader.appendChild(columnHeaderChar);
-		 	row.appendChild(columnHeader);
+		 	column = document.createElement("td");
+		 	column.className = "cell";
+		 	columnOfChar = document.createTextNode(arrOfChar[i]);
+		 	column.appendChild(columnOfChar);
+		 	row.appendChild(column);
+		} 
 
 
-		 } 
 	</script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 .wrapper {
 	/*margin: 50px auto;*/
 	/*margin-left: 500px; */
+	font-size: 55px;
+	text-align: center;
 
 }
 .myTable {
@@ -14,10 +16,10 @@
 .addressFieldLeft,
 .addressFieldRight {
 	border: 1px solid black;
-	width: 80px;
-	height: 80px;
-	text-align: center;
-	font-size: 45px;
+	width: 70px;
+	height: 70px;
+	
+	
 }
 .addressFieldRight {
 	transform: rotate(180deg);
